@@ -1,5 +1,6 @@
 import React from "react";
 import Square from "./Square";
+import Form from "./Form";
 
 class Day extends React.Component{
     constructor(props){
@@ -16,6 +17,7 @@ class Day extends React.Component{
                 <h1>To jest widok dnia</h1>
                 {hours.map((hour) =>
                 <Square name={hour} className="inDay"/>)}
+                <Form/>
             </div>
         )
     }

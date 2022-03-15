@@ -5,6 +5,20 @@ class Form extends React.Component{
         super(props);
     }
     
+    render(){
+        return(
+            <div>
+                <form>
+                    <label>
+                        Notatka:
+                        <textarea></textarea>
+                        <input type="submit" value="Submit"/>
+                    </label>
+                </form>
+            </div>
+        )
+    }
+
 }
 
 export default Form
