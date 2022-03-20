@@ -1,13 +1,10 @@
 import React from "react";
 
 class Square extends React.Component{
-    constructor(props){
-        super(props);
-    }
     
     render(){
         return(
-            <div className={this.props.className}>
+            <div className={this.props.className} onClick={this.props.clickFunction}>
                 {this.props.name}
             </div>
         )

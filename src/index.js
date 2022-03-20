@@ -1,12 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import Calendar from './Components/Calendar';
+import Main from './Main.js';
 
 ReactDOM.render(
-  <Calendar/>,
+  <Main/>,
   document.getElementById('root')
 );
 

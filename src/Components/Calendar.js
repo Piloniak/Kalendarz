@@ -13,37 +13,63 @@ class Calendar extends React.Component{
             year: 2022,
             month: 1,
             day: 1,
+            weekday: 0,
         }
-        // this.changingYear=this.changingYear.bind(this);
-        // this.changingMonth=this.changingMonth.bind(this);
-        // this.changingDay=this.changingDay.bind(this);
+        this.addYear=this.addYear.bind(this);
+        this.substractYear=this.substractYear.bind(this);
+        this.addMonth=this.addMonth.bind(this);
+        this.substractMonth=this.substractMonth.bind(this);
+        this.addingDay=this.addingDay.bind(this);
+        this.substractingDay=this.substractingDay.bind(this);
     }
 
     changingDisplay(display){
-        this.setState({appearance: display});
+        let appearance = display;
+        this.setState({appearance: appearance});
             
     }
 
-    // changingYear(adder){
-    //     let year=this.state.date.getFullYear();
-    //     this.state.date.setFullYear(year+adder);
-    //     this.setState({year: this.state.date.getFullYear});
-    //     //console.log(this.state.date);
-    // }
+    addYear(){
+        let year=this.state.date.getFullYear();
+        this.state.date.setFullYear(year+1);
+        this.setState({year: this.state.date.getFullYear});
+        //console.log(this.state.date);
+    }
 
-    // changingMonth(adder){
-    //     let month=this.state.date.getMonth();
-    //     this.state.date.setMonth(month+adder);
-    //     this.setState({month: this.state.date.getMonth});
-    //     //console.log(this.state.date);
-    // }
+    substractYear(){
+        let year=this.state.date.getFullYear();
+        this.state.date.setFullYear(year-1);
+        this.setState({year: this.state.date.getFullYear});
+        //console.log(this.state.date);
+    }
 
-    // changingDay(adder){
-    //     let day=this.state.date.getDate();
-    //     this.state.date.setDate(day+adder);
-    //     this.setState({day: this.state.date.getDate});
-    //     //console.log(this.state.date);
-    // }
+    addMonth(){
+        let month=this.state.date.getMonth();
+        this.state.date.setMonth(month+1);
+        this.setState({month: this.state.date.getMonth});
+        //console.log(this.state.date);
+    }
+
+    substractMonth(){
+        let month=this.state.date.getMonth();
+        this.state.date.setMonth(month-1);
+        this.setState({month: this.state.date.getMonth});
+        //console.log(this.state.date);
+    }
+
+    addingDay(adder){
+        let day=this.state.date.getDate();
+        this.state.date.setDate(day+1);
+        this.setState({day: this.state.date.getDate});
+        //console.log(this.state.date);
+    }
+
+    substractingDay(){
+        let day=this.state.date.getDate();
+        this.state.date.setDate(day-1);
+        this.setState({day: this.state.date.getDate});
+        //console.log(this.state.date);
+    }
 
     render(){
 
@@ -51,14 +77,15 @@ class Calendar extends React.Component{
         let display;
         //console.log(this.state.date);
         let date = new Date(this.state.date.getFullYear(),this.state.date.getMonth()+1,0);
-        console.log(date);
+        let weekDayDate = new Date(this.state.date.getFullYear(),this.state.date.getMonth(),1);
+        let weekDay=weekDayDate.getDay()-1;
 
         if(appearance==="year"){
-            display = <Year year={this.state.date.getFullYear()} /*changingYear={this.changingYear}*//>
+            display = <Year year={this.state.date.getFullYear()} addingYear={this.addYear} substractingYear={this.substractYear} goingToMonthDisplay={this.changingDisplay}/>
         }else if(appearance==="month"){
-            display = <Month amountOfDays={date.getDate()} year={this.state.date.getFullYear()} month={this.state.date.getMonth()} /*changingMonth={this.changingMonth}*//>
+            display = <Month amountOfDays={date.getDate()} year={this.state.date.getFullYear()} month={this.state.date.getMonth()} addingMonth={this.addMonth} substractingMonth={this.substractMonth} weekDay={weekDay} />
         }else if(appearance==="day"){
-            display = <Day year={this.state.date.getFullYear()} month={this.state.date.getMonth()} day={this.state.date.getDate()} /*changingDay={this.changingDay}*//>
+            display = <Day year={this.state.date.getFullYear()} month={this.state.date.getMonth()} day={this.state.date.getDate()} addingDay={this.addingDay} substractingDay={this.substractingDay} amountOfDays={date.getDate()}/>
         }else{
             display = <h1>JAK?????</h1>;
         }
@@ -67,6 +94,7 @@ class Calendar extends React.Component{
             <div className={this.state.appearance}>
                 
                 {display}
+                
                 <br/>
                 <button onClick={() => this.changingDisplay("year")} className="changingButtons">Widok rok</button>
                 <button onClick={() => this.changingDisplay("month")} className="changingButtons">Widok miesiąc</button>
